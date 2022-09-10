@@ -1,0 +1,366 @@
+{
+    "query1": {
+        "WHERE": {
+            "IS": {
+                "courses_dept": "cpsc"
+            }
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_dept",
+                "courses_id"
+            ],
+            "ORDER": "courses_id"
+        }
+    },
+
+    "courses_whereEQ": {
+        "WHERE": {
+            "EQ": {
+                "courses_audit": 20
+            }
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_audit"
+            ],
+            "ORDER": "courses_audit"
+        }
+    },
+
+    "courses_whereGT": {
+        "WHERE": {
+            "GT": {
+                "courses_audit": 20
+            }
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_audit"
+            ],
+            "ORDER": "courses_audit"
+        }
+    },
+
+    "courses_whereIS": {
+        "WHERE": {
+            "IS": {
+                "courses_dept": "cpsc"
+            }
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_dept"
+            ],
+            "ORDER": "courses_dept"
+        }
+    },
+
+    "courses_whereLT": {
+        "WHERE": {
+            "LT": {
+                "courses_avg": 30
+            }
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_dept"
+            ],
+            "ORDER": "courses_dept"
+        }
+    },
+
+    "courses_whereAND": {
+        "WHERE": {
+            "AND": [
+                {
+                    "IS": {
+                        "courses_dept": "cpsc"
+                    }
+                },
+                {
+                    "EQ": {
+                        "courses_audit": 2
+                    }
+                }
+            ]
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_dept"
+            ],
+            "ORDER": "courses_dept"
+        }
+    },
+
+    "courses_whereOR": {
+        "WHERE": {
+            "OR": [
+                {
+                    "LT": {
+                        "courses_avg": 30
+                    }
+                },
+                {
+                    "EQ": {
+                        "courses_fail": 80
+                    }
+                }
+            ]
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_dept"
+            ],
+            "ORDER": "courses_dept"
+        }
+    },
+
+    "courses_whereNOT": {
+        "WHERE": {
+            "NOT": {
+                "OR": [
+                    {
+                        "LT": {
+                            "courses_avg": 30
+                        }
+                    },
+                    {
+                        "GT": {
+                            "courses_avg": 40
+                        }
+                    }
+                ]
+            }
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_dept"
+            ],
+            "ORDER":"courses_dept"
+        }
+    },
+
+    "courses_whereANDmulti": {
+        "WHERE": {
+            "AND": [
+                {
+                    "IS": {
+                        "courses_dept": "cpsc"
+                    }
+                },
+                {
+                    "EQ": {
+                        "courses_audit": 1
+                    }
+                },
+                {
+                    "LT": {
+                        "courses_pass": 10
+                    }
+                }
+            ]
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_dept",
+                "courses_id"
+            ],
+            "ORDER":"courses_dept"
+        }
+    },
+
+    "courses_whereORmulti": {
+        "WHERE": {
+            "OR": [
+                {
+                    "GT": {
+                        "courses_audit": 20
+                    }
+                },
+                {
+                    "GT": {
+                        "courses_fail": 9000
+                    }
+                },
+                {
+                    "LT": {
+                        "courses_pass": 1
+                    }
+                }
+            ]
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_audit"
+            ],
+            "ORDER": "courses_audit"
+        }
+    },
+
+    "courses_whereNOTmulti": {
+        "WHERE": {
+            "NOT": {
+                "OR": [
+                    {
+                        "GT": {
+                            "courses_pass": 20
+                        }
+                    },
+                    {
+                        "EQ": {
+                            "courses_audit": 0
+                        }
+                    },
+                    {
+                        "LT": {
+                            "courses_pass": 18
+                        }
+                    }
+                ]
+            }
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_fail"
+            ],
+            "ORDER": {
+                "dir": "UP",
+                "keys": [
+                    "courses_fail"
+                ]
+            }
+        }
+    },
+
+    "courses_whereAND_not": {
+        "WHERE": {
+            "AND": [
+                {
+                    "NOT": {
+                        "GT": {
+                            "courses_pass": 1
+                        }
+                    }
+                },
+                {
+                    "GT": {
+                        "courses_audit": 0
+                    }
+                }
+            ]
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_fail"
+            ],
+            "ORDER": {
+                "dir": "UP",
+                "keys": [
+                    "courses_fail"
+                ]
+            }
+        }
+    },
+
+    "courses_transCOUNT": {
+        "WHERE": {
+            "AND": [
+                {
+                    "IS": {
+                        "courses_dept": "atsc"
+                    }
+                },
+                {
+                    "LT": {
+                        "courses_avg": 70
+                    }
+                }
+            ]
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_audit",
+                "overallCOUNT"
+            ],
+            "ORDER": {
+                "dir": "UP",
+                "keys": [
+                    "courses_audit"
+                ]
+            }
+        },
+        "TRANSFORMATIONS": {
+            "GROUP": [
+                "courses_audit"
+            ],
+            "APPLY": [
+                {
+                    "overallCOUNT": {
+                        "COUNT": "courses_audit"
+                    }
+                }
+            ]
+        }
+    },
+
+    "courses_transCOUNTmulti": {
+        "WHERE": {
+            "AND": [
+                {
+                    "IS": {
+                        "courses_dept": "atsc"
+                    }
+                },
+                {
+                    "LT": {
+                        "courses_avg": 70
+                    }
+                }
+            ]
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_audit",
+                "overallCOUNT",
+                "overallAVG"
+            ],
+            "ORDER": {
+                "dir": "UP",
+                "keys": [
+                    "courses_audit"
+                ]
+            }
+        },
+        "TRANSFORMATIONS": {
+            "GROUP": [
+                "courses_audit"
+            ],
+            "APPLY": [
+                {
+                    "overallCOUNT": {
+                        "COUNT": "courses_audit"
+                    }
+                },
+                {
+                    "overallAVG": {
+                        "AVG": "courses_audit"
+                    }
+                }
+            ]
+        }
+    },
+
+    "courses_where_empty": {
+        "WHERE": {},
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_dept",
+                "courses_instructor"
+            ]
+        }
+    }
+
+
+
+}
